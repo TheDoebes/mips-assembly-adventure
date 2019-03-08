@@ -10,3 +10,5 @@
 	li	$v0, 1
 	add	$a0, $zero, $t0
 	syscall
+	
+	#Note that for mul, the input domain is two 16-bit numbers, as their ouput is 32-bit, the range.
