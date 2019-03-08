@@ -8,6 +8,7 @@
 				#the results are large, so the product is stored in lo and hi regs
 				
 	mflo	$s0
+	mfhi	$s1		#not used here
 	
 	#display result
 	li	$v0, 1
