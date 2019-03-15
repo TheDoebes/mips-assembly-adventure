@@ -15,6 +15,12 @@
 	add	$a0, $zero, $s0		#buffer s0
 	syscall				#Print
 	
+	#add a space before printing two-reg division
+	li	$v0, 4			#declare character type
+	addi	$a0, $zero, ' '
+	syscall	
+	
+	li	$v0, 1			#declare intger type
 	add	$a0, $zero, $s1		#buffer s1 = quotient (AKA integer division) = 6
 	syscall
 	add	$a0, $zero, $s2		#buffer s2 = remainder (AKA modulus) = 6
