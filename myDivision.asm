@@ -14,18 +14,15 @@
 	#Display Results
 	li	$v0, 1			#type int
 	add	$a0, $zero, $s0		#buffer s0
-	syscall				#Print
-	
-	#add an extra space before printing two-reg division
+	syscall				#Print it!
 	li	$v0, 4			#declare character type
-	la $a0, space
+	la 	$a0, newln
 	syscall
 	
-	syscall
+	
 	li	$v0, 1			#declare intger type
 	add	$a0, $zero, $s1		#buffer s1 = quotient (AKA integer division) = 6
 	syscall
-	
 	li	$v0, 4			#declare character type
 	la 	$a0, space		#print a space
 	syscall
