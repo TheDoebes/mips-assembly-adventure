@@ -1,17 +1,37 @@
 .data
-
+	words:	.asciiz	"is the result of factorial(1).\n"
 .text
-
+	main:
+		#Call Fact(4)
+		addi	$a0, $zero, 1
+		jal	fact
+		
+		#Print 4!
+		add	$a0, $zero, $v0
+		addi	$v0, $zero, 1
+		syscall
+		
+		#Print some words
+		li	$v0, 4
+		la	$a0, words
+		syscall
+		
+		
+	#Exit Code
+	li	$v0, 10
+	syscall
+	
 	fact:	
-		addi	$sp, $sp, -8	#Create two spots on the stack
+		addi	$sp, $sp,-8	#Create two spots on the stack
 		sw	$ra, 4($sp)	#Preserve the return address on the stack (this is necassary for recursion)
 		sw	$a0, 0($s0)	#Preserve the argument of the current iteration
 		
-		slt	$t0, $a0, 1		#Create flag at t0 = (a0 < 1)
+		addi	$t1, $zero, 1
+		slt	$t0, $a0, $t1		#Create flag at t0 = (a0 < 1)
 		beq	$t0, $zero, IfThen	#If t0 flag is true, then go to label IfThen
 		
 		#Else,
-		addi	$v0m $zero, 1	#Load 1 into return register
+		addi	$v0 $zero, 1	#Load 1 into return register
 		addi	$sp, $sp, 8	#Pop the top two items off the stack to return it to its original state
 		jr	$ra		#return to address which called the routine
 		
